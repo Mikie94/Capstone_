@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="PerfectFarming.Controls.Warehouse"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PerfectFarming.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="0.5" BorderBrush="Gray" Background="#4CAF50">
+            <Label Content="Products" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Foreground="White" Margin="10,0,0,0"/>
+        </Border>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <TextBlock Text="Search:"  VerticalAlignment="Center" Foreground="Black"/>
+            <TextBox Text="" x:Name="searchField" HorizontalAlignment="Stretch" Width="160" Margin="2,2,0,2" TextAlignment="Left" TextChanged="searchField_TextChanged"/>
+        </StackPanel>
+        <ListView x:Name="listProducts" Width="200" Grid.Row="2" SelectionChanged="listProducts_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding name}"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="Category: "/>
+                            <TextBlock Text="{Binding category}"/>
+                            <TextBlock Text="  "/>
+                            <TextBlock Text="price: "/>
+                            <TextBlock Text="{Binding price_per_item}"/>
+                            <TextBlock Text="$"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Border Grid.Row="3" Background="#4CAF50" MouseLeftButtonUp="Border_MouseLeftButtonUp" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="/Resources/add.png" Stretch="Uniform" Height="25"/>
+                <Label Content="Add Product" FontSize="16" FontWeight="Bold" Foreground="White"  VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        <Grid x:Name="detailGrid" Visibility="Hidden" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"  VerticalAlignment="Top" Margin="12,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Label Content="Name: " FontSize="18" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                <Label x:Name="productName" FontSize="18"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <Label Content="Category: " FontSize="18" FontWeight="Bold" VerticalContentAlignment="Top"/>
+                <TextBlock x:Name="category" FontSize="18" Margin="5" TextWrapping="Wrap" Width="300" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                <Label Content="Quantity: " FontSize="18" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                <TextBlock x:Name="quantity" VerticalAlignment="Center" FontSize="18" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3">
+                <Label Content="Price per item: " FontSize="18" FontWeight="Bold" VerticalContentAlignment="Center"/>
+                <TextBlock x:Name="price" VerticalAlignment="Center" FontSize="18" />
+                <TextBlock Text=" $" FontSize="14" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</UserControl>

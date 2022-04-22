@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7E93C696-4380-4068-94D6-303875454885}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OpenWeather</RootNamespace>
+    <AssemblyName>OpenWeather</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MahApps.Metro">
+      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\MahApps.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.0.10.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Behavior\SelectAllTextOnEnterKeyPressBehavior.cs" />
+    <Compile Include="Command\AsyncCommand.cs" />
+    <Compile Include="HelperClass\Weather.cs" />
+    <Compile Include="Model\WeatherDetails.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="WeatherIcons\200d.png" />
+    <Resource Include="WeatherIcons\200n.png" />
+    <Resource Include="WeatherIcons\201d.png" />
+    <Resource Include="WeatherIcons\201n.png" />
+    <Resource Include="WeatherIcons\202d.png" />
+    <Resource Include="WeatherIcons\202n.png" />
+    <Resource Include="WeatherIcons\210d.png" />
+    <Resource Include="WeatherIcons\210n.png" />
+    <Resource Include="WeatherIcons\211d.png" />
+    <Resource Include="WeatherIcons\211n.png" />
+    <Resource Include="WeatherIcons\212d.png" />
+    <Resource Include="WeatherIcons\212n.png" />
+    <Resource Include="WeatherIcons\221d.png" />
+    <Resource Include="WeatherIcons\221n.png" />
+    <Resource Include="WeatherIcons\230d.png" />
+    <Resource Include="WeatherIcons\230n.png" />
+    <Resource Include="WeatherIcons\231d.png" />
+    <Resource Include="WeatherIcons\231n.png" />
+    <Resource Include="WeatherIcons\232d.png" />
+    <Resource Include="WeatherIcons\232n.png" />
+    <Resource Include="WeatherIcons\300d.png" />
+    <Resource Include="WeatherIcons\300n.png" />
+    <Resource Include="WeatherIcons\301d.png" />
+    <Resource Include="WeatherIcons\301n.png" />
+    <Resource Include="WeatherIcons\302d.png" />
+    <Resource Include="WeatherIcons\302n.png" />
+    <Resource Include="WeatherIcons\310d.png" />
+    <Resource Include="WeatherIcons\310n.png" />
+    <Resource Include="WeatherIcons\311d.png" />
+    <Resource Include="WeatherIcons\311n.png" />
+    <Resource Include="WeatherIcons\312d.png" />
+    <Resource Include="WeatherIcons\312n.png" />
+    <Resource Include="WeatherIcons\321d.png" />
+    <Resource Include="WeatherIcons\321n.png" />
+    <Resource Include="WeatherIcons\500d.png" />
+    <Resource Include="WeatherIcons\500n.png" />
+    <Resource Include="WeatherIcons\501d.png" />
+    <Resource Include="WeatherIcons\501n.png" />
+    <Resource Include="WeatherIcons\502d.png" />
+    <Resource Include="WeatherIcons\502n.png" />
+    <Resource Include="WeatherIcons\503d.png" />
+    <Resource Include="WeatherIcons\503n.png" />
+    <Resource Include="WeatherIcons\504d.png" />
+    <Resource Include="WeatherIcons\504n.png" />
+    <Resource Include="WeatherIcons\511d.png" />
+    <Resource Include="WeatherIcons\511n.png" />
+    <Resource Include="WeatherIcons\520d.png" />
+    <Resource Include="WeatherIcons\520n.png" />
+    <Resource Include="WeatherIcons\521d.png" />
+    <Resource Include="WeatherIcons\521n.png" />
+    <Resource Include="WeatherIcons\522d.png" />
+    <Resource Include="WeatherIcons\522n.png" />
+    <Resource Include="WeatherIcons\600d.png" />
+    <Resource Include="WeatherIcons\600n.png" />
+    <Resource Include="WeatherIcons\601d.png" />
+    <Resource Include="WeatherIcons\601n.png" />
+    <Resource Include="WeatherIcons\602d.png" />
+    <Resource Include="WeatherIcons\602n.png" />
+    <Resource Include="WeatherIcons\611d.png" />
+    <Resource Include="WeatherIcons\611n.png" />
+    <Resource Include="WeatherIcons\621d.png" />
+    <Resource Include="WeatherIcons\621n.png" />
+    <Resource Include="WeatherIcons\701d.png" />
+    <Resource Include="WeatherIcons\701n.png" />
+    <Resource Include="WeatherIcons\711d.png" />
+    <Resource Include="WeatherIcons\711n.png" />
+    <Resource Include="WeatherIcons\721d.png" />
+    <Resource Include="WeatherIcons\721n.png" />
+    <Resource Include="WeatherIcons\731d.png" />
+    <Resource Include="WeatherIcons\731n.png" />
+    <Resource Include="WeatherIcons\741d.png" />
+    <Resource Include="WeatherIcons\741n.png" />
+    <Resource Include="WeatherIcons\800d.png" />
+    <Resource Include="WeatherIcons\800n.png" />
+    <Resource Include="WeatherIcons\801d.png" />
+    <Resource Include="WeatherIcons\801n.png" />
+    <Resource Include="WeatherIcons\802d.png" />
+    <Resource Include="WeatherIcons\802n.png" />
+    <Resource Include="WeatherIcons\803d.png" />
+    <Resource Include="WeatherIcons\803n.png" />
+    <Resource Include="WeatherIcons\804d.png" />
+    <Resource Include="WeatherIcons\804n.png" />
+    <Resource Include="WeatherIcons\900d.png" />
+    <Resource Include="WeatherIcons\900n.png" />
+    <Resource Include="WeatherIcons\901d.png" />
+    <Resource Include="WeatherIcons\901n.png" />
+    <Resource Include="WeatherIcons\902d.png" />
+    <Resource Include="WeatherIcons\902n.png" />
+    <Resource Include="WeatherIcons\903d.png" />
+    <Resource Include="WeatherIcons\903n.png" />
+    <Resource Include="WeatherIcons\904d.png" />
+    <Resource Include="WeatherIcons\904n.png" />
+    <Resource Include="WeatherIcons\905d.png" />
+    <Resource Include="WeatherIcons\905n.png" />
+    <Resource Include="WeatherIcons\906d.png" />
+    <Resource Include="WeatherIcons\906n.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,258 @@
+﻿<UserControl x:Class="PerfectFarming.Controls.Works"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PerfectFarming.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border BorderThickness="0.5" BorderBrush="Gray" Background="#4CAF50">
+            <Label Content="Work Flows" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" Foreground="White" Margin="10,0,0,0"/>
+        </Border>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <TextBlock Text="Search:"  VerticalAlignment="Center" Foreground="Black"/>
+            <TextBox Text="" x:Name="searchField" HorizontalAlignment="Stretch" Width="160" Margin="2,2,0,2" TextAlignment="Left" TextChanged="searchField_TextChanged"/>
+        </StackPanel>
+        <ListView x:Name="listWorkflow" Width="200" Grid.Row="2" Grid.RowSpan="2" SelectionChanged="listWorkflow_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding WorkflowName}"/>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <TextBlock Text="Expenses: "/>
+                            <TextBlock Text="{Binding TotalExpense}"/>
+                            <TextBlock Text="$"/>
+                            <TextBlock Text="  "/>
+                            <Image Source="/Resources/equipment1.png" Width="10" Height="10"/>
+                            <TextBlock Text="{Binding TotalEquipments}"/>
+                            <TextBlock Text="  "/>
+                            <Image Source="/Resources/user1.png" Width="10" Height="10"/>
+                            <TextBlock Text="{Binding TotalWorkers}"/>
+                            <TextBlock Text="  "/>
+                            <Image Source="/Resources/products.png" Width="10" Height="10"/>
+                            <TextBlock Text="{Binding TotalProducts}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Border Grid.Row="3" Background="#4CAF50" Visibility="Visible" MouseLeftButtonUp="Border_MouseLeftButtonUp" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Image Source="/Resources/add.png" Stretch="Uniform" Height="25"/>
+                <Label Content="Add Work Flow" FontSize="16" FontWeight="Bold" Foreground="White"  VerticalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+        <Grid x:Name="detailGrid" Visibility="Hidden" Grid.Column="1" Grid.Row="0" Grid.RowSpan="4" Background="White" Margin="5">
+            <Grid.Resources>
+                <local:BoolInvertConverter x:Key="boolConvert"/>
+                <local:BoolStringCovert x:Key="boolStringConvert"/>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                <TextBlock x:Name="workflowName" Text="{Binding WorkflowName}" Margin="2,0,0,0" FontSize="20" FontWeight="ExtraBold"/>
+                <Label Content="Main Parameters" Margin="2,0,0,0" FontSize="18" FontWeight="Bold"/>
+            </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock Text="Crop" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Crop.name}" FontSize="20" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" >
+                    <TextBlock Text="Field" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Field.name}" FontSize="20" HorizontalAlignment="Center"/>
+                    <Button x:Name="btnUse" Content="USE" Margin="20,0,20,0" Width="60" Click="btnUse_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="Stage" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding Stage}" FontSize="20" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3">
+                    <TextBlock Text="Total Expense" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding TotalExpense}" FontSize="20" VerticalAlignment="Center"/>
+                        <TextBlock Text="$" FontSize="14" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="4">
+                    <TextBlock Text="Revenue" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="{Binding Revenue}" FontSize="20" VerticalAlignment="Center"/>
+                        <TextBlock Text="$" FontSize="14" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Total Equipments" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalEquipments}" FontSize="20" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1">
+                    <TextBlock Text="Total Workers" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalWorkers}" FontSize="20" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="2">
+                    <TextBlock Text="Total Products" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalProducts}" FontSize="20" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1"  Grid.Column="3">
+                    <TextBlock Text="Total Days" FontSize="15" FontWeight="Black" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalDays}" FontSize="20" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <Label Content="Works" FontSize="18" FontWeight="Bold" Grid.Row="2"/>
+                
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.ColumnSpan="4">
+                <ItemsControl ItemsSource="{Binding Operations}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,2,0,0" >
+                                <Border BorderBrush="#FF5E727C" BorderThickness="10,1,0,0" HorizontalAlignment="Left"
+						Margin="0" VerticalAlignment="Center" >
+                                    <StackPanel Margin="0">
+                                        <Grid Margin="0,5,0,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <StackPanel Orientation="Horizontal">
+                                                        <TextBlock TextWrapping="Wrap" FontSize="14" Foreground="#FF333B42" Padding="2,0,0,0" 
+                                            Margin="0" TextAlignment="Left" FontWeight="Bold"  HorizontalAlignment="Left" 
+                                            Text="{Binding OperationName}"/>
+                                                        <StackPanel Orientation="Horizontal" Margin="20,0,0,0">
+                                                            <TextBlock Text="Wages: " FontWeight="Bold"/>
+                                                            <TextBlock Text="{Binding Wages}" />
+                                                            <TextBlock Text="$" />
+                                                            <TextBlock Text="{Binding StartDate}" Margin="10,0,0,0"/>
+                                                            <TextBlock Text=" - "/>
+                                                            <TextBlock Text="{Binding EndDate}"/>
+                                                            <TextBlock Text="{Binding Path=IsCompleted,Converter = {StaticResource boolStringConvert}}" Margin="10,0,0,0" FontWeight="Bold"/>
+                                                            <Button Content="Completed?" Tag="{Binding OperationId}" IsEnabled="{Binding Path=IsCompleted,Converter = {StaticResource boolConvert}}" Margin="10,0,0,0" Width="80" Click="Button_Click"/>
+                                                        </StackPanel>
+                                                </StackPanel>
+                                                <TextBlock Text="Equipmets" Margin="20,10,0,0" FontSize="15" FontWeight="Bold"/>
+                                                <ItemsControl Margin="20,0,0,0" ItemsSource="{Binding Equipments}" HorizontalAlignment="Left" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Top">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid Margin="10,2,0,0" >
+                                                                <Border BorderBrush="#FF5E727C" BorderThickness="0,1,0,0" HorizontalAlignment="Left" 
+						Margin="0" VerticalAlignment="Center" >
+                                                                    <StackPanel Margin="0">
+                                                                        <Grid Margin="0,5,0,0">
+                                                                            <StackPanel Orientation="Horizontal">
+                                                                                <TextBlock TextWrapping="Wrap" FontSize="12" Foreground="#FF333B42" Padding="2,0,0,0" 
+                                        Margin="0" TextAlignment="Left" FontWeight="Bold"  HorizontalAlignment="Left" 
+                                        Text="{Binding name}"/>
+                                                                                <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                                                                    <TextBlock Text="{Binding make}"/>
+                                                                                    <TextBlock Text=" - "/>
+                                                                                    <TextBlock Text="{Binding model}"/>
+                                                                                </StackPanel>
+
+                                                                            </StackPanel>
+                                                                        </Grid>
+
+                                                                    </StackPanel>
+                                                                </Border>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                                    <TextBlock Text="Employees" Margin="20,10,0,0" FontSize="15" FontWeight="Bold"/>
+                                                    <ItemsControl Margin="20,0,0,0" ItemsSource="{Binding Employees}" HorizontalAlignment="Left" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Top">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Grid Margin="10,2,0,0" >
+                                                                    <Border BorderBrush="#FF5E727C" BorderThickness="0,1,0,0" HorizontalAlignment="Left" 
+						Margin="0" VerticalAlignment="Center" >
+                                                                        <StackPanel Margin="0">
+                                                                            <Grid Margin="0,5,0,0">
+                                                                                <StackPanel Orientation="Horizontal">
+                                                                                    <TextBlock TextWrapping="Wrap" FontSize="12" Foreground="#FF333B42" Padding="2,0,0,0" 
+                                        Margin="0" TextAlignment="Left" FontWeight="Bold"  HorizontalAlignment="Left" 
+                                        Text="{Binding first_name}"/>
+                                                                                    <TextBlock Text=" "/>
+                                                                                    <TextBlock Text="{Binding last_name}"/>
+
+                                                                                </StackPanel>
+                                                                            </Grid>
+
+                                                                        </StackPanel>
+                                                                    </Border>
+                                                                </Grid>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                    <TextBlock Text="Products" Margin="20,10,0,0" FontSize="15" FontWeight="Bold"/>
+                                                    <ItemsControl Margin="20,0,0,0" ItemsSource="{Binding Products}" HorizontalAlignment="Left" Grid.Row="3" Grid.ColumnSpan="9" VerticalAlignment="Top">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Grid Margin="10,2,0,0" >
+                                                                    <Border BorderBrush="#FF5E727C" BorderThickness="0,1,0,0" HorizontalAlignment="Left" 
+						Margin="0" VerticalAlignment="Center" >
+                                                                        <StackPanel Margin="0">
+                                                                            <Grid Margin="0,5,0,0">
+                                                                                <StackPanel Orientation="Horizontal">
+                                                                                    <TextBlock TextWrapping="Wrap" FontSize="12" Foreground="#FF333B42" Padding="2,0,0,0" 
+                                        Margin="0" TextAlignment="Left" FontWeight="Bold"  HorizontalAlignment="Left" 
+                                        Text="{Binding name}"/>
+                                                                                    <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                                                                        <TextBlock Text="{Binding quantity}"/>
+                                                                                        <TextBlock Text=" - "/>
+                                                                                        <TextBlock Text="{Binding price_per_item}"/>
+                                                                                        <TextBlock Text="$"/>
+                                                                                    </StackPanel>
+
+                                                                                </StackPanel>
+                                                                            </Grid>
+
+                                                                        </StackPanel>
+                                                                    </Border>
+                                                                </Grid>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+
+                                                </StackPanel>
+                                        </Grid>
+                                        
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
